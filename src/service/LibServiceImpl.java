@@ -1,11 +1,16 @@
 package service;
 
+import model.Book;
+import model.User;
+
 import java.util.List;
+import java.util.Map;
 
-public class LibServiceImpl{
-    //类型描述：LibDaoImpl类的对象，用于对该类中的方法进行调用
-    //             方法：
-    //             此类中的方法形式与LibDaoImpl类一致，用于对LibDaoImpl中对应方法的调用
-    //             注意：注册时需要判断用户名是否存在，如果存在给出错误提示，否则进行注册
-
+public interface LibServiceImpl{
+    void regist(User user);
+    int login(String username, String password);
+    void addBookCategory(Long id, String categoryName, String description);
+    List<Map<String, Object>> getAllBookCategory();
+    void addBook(Book book);
+    List<Book> getBooksByCondition(String bookID, String bookName, String categoryName);
 }

@@ -1,24 +1,27 @@
 package dao;
 
 import model.Book;
-import model.Category;
 import model.User;
+import service.LibServiceImpl;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class LibDaoImpl {
+public class LibDaoImpl implements LibServiceImpl {
     private static final List<User> userDb=new ArrayList<>();
-    private static final List<Category> categorys=new ArrayList<>();
+    private static final List<Map<String, Object>> categorys=new ArrayList<>();
     private static final List<Book> books=new ArrayList<>();
 
+    @Override
     public void regist(User user) {
         if(!userDb.contains(user)){
             userDb.add(user);
         }
     }
-    public int login(String username, String password){
+
+    @Override
+    public int login(String username, String password) {
         if(userDb!=null){
             for (int i = 0; i <userDb.size() ; i++) {
                 if(userDb.get(0).getName().equals(username)){
@@ -30,22 +33,26 @@ public class LibDaoImpl {
         }
         return 0;
     }
-    public void addBookCatgory(Long id, String categoryName, String description) {
-        Category category=new Category(id,categoryName,description);
-        if(!categorys.contains(category)){
-           categorys.add(category);
-        }
+
+    @Override
+    public void addBookCategory(Long id, String categoryName, String description) {
+
     }
-    public List<Category> getAllBookCatgory(){
-        return categorys;
+
+    @Override
+    public List<Map<String, Object>> getAllBookCategory() {
+        return null;
     }
-    public void addBook(Book book){
+
+    @Override
+    public void addBook(Book book) {
         if(!books.contains(book)){
             books.add(book);
         }
     }
-    public List<Book> getBooksByCondition(String bookID, String bookName, String catgoryName) {
 
-        return books;
+    @Override
+    public List<Book> getBooksByCondition(String bookID, String bookName, String categoryName) {
+        return null;
     }
 }
