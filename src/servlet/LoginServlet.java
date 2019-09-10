@@ -17,9 +17,15 @@ public class LoginServlet extends HttpServlet {
         String password=request.getParameter("password");
         LibServiceImpl libService=new LibServiceImpl();
         if(libService.isLogin(username,password)){
-            System.out.println("登录成功！");
-            request.getRequestDispatcher("/server.html").forward(request,response);
+            //System.out.println("登录成功！");
+            //response.getWriter().println(username);
+            //request.getRequestDispatcher("/server.html").forward(request,response);
+            request.getSession().setAttribute("username",username);
+            //重定向
+            response.setContentType("text/html;charset=utf-8");
+            response.sendRedirect(request.getContextPath()+"/server.html");
         }else {
+            response.setContentType("text/html;charset=utf-8");
             System.out.println("登录失败");
             response.getWriter().println("登录失败");
         }

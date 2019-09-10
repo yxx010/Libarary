@@ -10,7 +10,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-    <% String username=(String) request.getParameter("username");%>
+    <% String username=(String) session.getAttribute("username");%>
 </head>
 <body>
 <center>

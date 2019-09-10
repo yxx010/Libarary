@@ -21,7 +21,9 @@ public class ToAddBookServlet extends HttpServlet {
         String des=request.getParameter("des");
         Book book=new Book(id,name,category,price,des);
         libService.addBook(book);
+        response.setContentType("text/html;charset=utf-8");
         response.getWriter().println("添加成功");
+        response.sendRedirect("/showBooks.html");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
