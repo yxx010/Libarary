@@ -11,11 +11,11 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>图书添加</title>
     <script type="application/javascript" src="js/jquery-3.4.1.js"></script>
-</head>
+</head>ESXD
 <body>
 <center>
     <h1>图书添加</h1>
-    <form action="/AddBookServlet" method="post">
+    <form action="/ToAddBookServlet" method="post">
         <table width="400px" cellspacing="0px" cellpadding="0px" border="1px">
             <tr>
                 <td>图书ID</td>
@@ -29,12 +29,10 @@
                 <td>图书分类</td>
                 <td>
                     <select name="categoryName" id="categoryName">
+                        <option value="请选择">请选择</option>
                         <script>
                             var oButton=document.getElementById("categoryName");
                                 oButton.onclick=function () {
-                                    /*console.log(this.value);
-                                    console.log(this.id);
-                                    var type=this.value;*/
                                     //1.创建
                                     var xmlhttp;
                                     if(window.XMLHttpRequest){
@@ -48,21 +46,19 @@
                                     //3.处理服务的响应
 
                                     xmlhttp.onreadystatechange=function(){
+                                        var html="<option value=\"请选择\">"+"请选择</option>";
                                         if(xmlhttp.readyState==4&&xmlhttp.status==200){
                                             var text=xmlhttp.responseText;
                                             var json=JSON.parse(text);
-                                            var html="<option>请选择</option>";
                                             for (var i=0;i<json.length;i++){
-                                                var category=json[i];
-                                                html="<option>"+category.categoryName+"</option>";
+                                                var categoryName=json[i].categoryName;
+                                                html=html+"<option value='"+categoryName+"'>"+categoryName+"</option>";
                                             }
                                             document.getElementById("categoryName").innerHTML=html;
                                         }
                                     }
                             }
                         </script>
-                        <!--option value="请选择">请选择</option>
-                        <option value="请选择">选择2</option-->
                     </select>
                 </td>
             </tr>

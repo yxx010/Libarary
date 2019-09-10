@@ -27,10 +27,10 @@ public class LibServiceImpl{
     public List<Map<String, Object>> getAllBookCategory(){
         return libDao.getAllBookCategory();
     }
-    void addBook(Book book){
+    public void addBook(Book book){
         libDao.addBook(book);
     }
-    List<Book> getBooksByCondition(String bookID, String bookName, String categoryName){
+    public List<Book> getBooksByCondition(String bookID, String bookName, String categoryName){
        return libDao.getBooksByCondition(bookID,bookName,categoryName);
     }
 
