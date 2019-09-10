@@ -1,6 +1,7 @@
 package servlet;
 
 import dao.LibDaoImpl;
+import service.LibServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,11 +15,13 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username=request.getParameter("username");
         String password=request.getParameter("password");
-        LibDaoImpl libDao=new LibDaoImpl();
-        if(libDao.login(username,password)==1){
+        LibServiceImpl libService=new LibServiceImpl();
+        if(libService.isLogin(username,password)){
             System.out.println("登录成功！");
+            request.getRequestDispatcher("/server.html").forward(request,response);
         }else {
             System.out.println("登录失败");
+            response.getWriter().println("登录失败");
         }
     }
 

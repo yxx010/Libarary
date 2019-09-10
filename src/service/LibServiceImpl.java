@@ -9,24 +9,29 @@ import java.util.Map;
 
 public class LibServiceImpl{
     LibDaoImpl libDao=new LibDaoImpl();
-    void regist(User user){
+    public void regist(User user){
         libDao.regist(user);
     }
-    int login(String username, String password){
-        return libDao.login(username,password);
+    public boolean isLogin(String username, String password){
+        if(libDao.login(username,password)==1){
+            return true;
+        }else
+        {
+            return false;
+        }
 
     }
-    void addBookCategory(Long id, String categoryName, String description){
-
+    public void addBookCategory(Long id, String categoryName, String description){
+        libDao.addBookCategory(id, categoryName, description);
     }
-    List<Map<String, Object>> getAllBookCategory(){
-
+    public List<Map<String, Object>> getAllBookCategory(){
+        return libDao.getAllBookCategory();
     }
     void addBook(Book book){
-
+        libDao.addBook(book);
     }
     List<Book> getBooksByCondition(String bookID, String bookName, String categoryName){
-
+       return libDao.getBooksByCondition(bookID,bookName,categoryName);
     }
 
 }

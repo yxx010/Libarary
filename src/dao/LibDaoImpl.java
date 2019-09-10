@@ -4,6 +4,7 @@ import model.Book;
 import model.User;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -31,11 +32,16 @@ public class LibDaoImpl{
         return 0;
     }
     public void addBookCategory(Long id, String categoryName, String description) {
-
+        Map<String,Object> map=new HashMap<>();
+        map.put("id",id);
+        map.put("categoryName",categoryName);
+        map.put("description",description);
+        categorys.add(map);
     }
 
     public List<Map<String, Object>> getAllBookCategory() {
-        return null;
+
+        return categorys;
     }
 
     public void addBook(Book book) {
@@ -45,6 +51,7 @@ public class LibDaoImpl{
     }
 
     public List<Book> getBooksByCondition(String bookID, String bookName, String categoryName) {
+
         return null;
     }
 

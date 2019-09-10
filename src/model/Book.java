@@ -9,6 +9,17 @@ public class Book {
     private String price;
     private String des;
 
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", category='" + category + '\'' +
+                ", price='" + price + '\'' +
+                ", des='" + des + '\'' +
+                '}';
+    }
+
     public Book(){
 
     }
