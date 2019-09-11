@@ -17,7 +17,6 @@
 					console.log(json);
 					for (var i=0;i<json.length;i++){
 						var book=json[i];
-						//$("#lv1").append("<option value='"+ch.code+"'>"+ch.name)
 						$("#cont").append("<tr><td>"+book.id+"</td>" +
 								"<td>" + book.name+"</td>"+
 								"<td>" + book.category+"</td>"+
@@ -37,8 +36,6 @@
 				alert(bookID);
 				var bookName=document.getElementById("bookName").value;
 				var categoryName=document.getElementById("categoryName").value;
-
-				console.log(parent);
 				$.ajax({
 					"url":"/SelectBookServlet",
 					"data":{"bookID":bookID,"bookName":bookName,"categoryName":categoryName},
@@ -46,7 +43,7 @@
 					"type":"post",
 					"success":function(json){
 						console.log(json);
-						$("#cont").remove();
+						$("#cont>tr").remove();
 						for(var i=0;i<json.length;i++){
 							var book=json[i];
 							$("#cont").append("<tr><td>"+book.id+"</td>" +

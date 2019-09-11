@@ -17,6 +17,7 @@ public class SelectBookServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         LibServiceImpl libService=new LibServiceImpl();
         String bookID=request.getParameter("bookID");
+        System.out.println("ID是"+bookID);
         String bookName=request.getParameter("bookName");
         String categoryName=request.getParameter("categoryName");
         List<Book> list=libService.getBooksByCondition(bookID,bookName,categoryName);
