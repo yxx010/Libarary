@@ -11,7 +11,25 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>图书添加</title>
     <script type="application/javascript" src="js/jquery-3.4.1.js"></script>
-</head>ESXD
+    <script>
+        $(function () {
+            $.ajax({
+                "url":"/SelectCategoryServlet",
+                "type":"post",
+                "dataType":"json",
+                "success":function(json){
+                    console.log(json);
+                    for (var i=0;i<json.length;i++){
+                        var categoryName=json[i].categoryName;
+                        $("#categoryName").append("<option value='"
+                            +categoryName+"'>"+
+                            categoryName+"</option>");
+                    }
+                }
+            })
+        })
+    </script>
+</head>
 <body>
 <center>
     <h1>图书添加</h1>
@@ -19,7 +37,7 @@
         <table width="400px" cellspacing="0px" cellpadding="0px" border="1px">
             <tr>
                 <td>图书ID</td>
-                <td><input type="text" name="id" placeholder="请输入数字" pattern="\d+" required="required"></td>
+                <td><input type="text" name="id"  placeholder="请输入数字" pattern="\d+" required="required"></td>
             </tr>
             <tr>
                 <td>图书名</td>
@@ -29,8 +47,7 @@
                 <td>图书分类</td>
                 <td>
                     <select name="categoryName" id="categoryName">
-                        <option value="请选择">请选择</option>
-                        <script>
+                        <!--script>
                             var oButton=document.getElementById("categoryName");
                                 oButton.onclick=function () {
                                     //1.创建
@@ -46,7 +63,7 @@
                                     //3.处理服务的响应
 
                                     xmlhttp.onreadystatechange=function(){
-                                        var html="<option value=\"请选择\">"+"请选择</option>";
+                                        var html="";
                                         if(xmlhttp.readyState==4&&xmlhttp.status==200){
                                             var text=xmlhttp.responseText;
                                             var json=JSON.parse(text);
@@ -58,7 +75,7 @@
                                         }
                                     }
                             }
-                        </script>
+                        </script-->
                     </select>
                 </td>
             </tr>

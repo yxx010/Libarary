@@ -10,12 +10,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-    <% String username=(String) session.getAttribute("username");%>
+    <% String loginUser=(String) session.getAttribute("loginUser");%>
 </head>
 <body>
 <center>
     <h1>
-        图书后台管理系统<span style="font-size:12px">您好，<%=username%></span>
+        图书后台管理系统<span style="font-size:12px">您好，<%=loginUser%></span>
     </h1>
 </center>
 </body>
