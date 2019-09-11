@@ -13,6 +13,7 @@ public class LibDaoImpl{
     private static final List<Map<String, Object>> categorys=new ArrayList<>();
     private static final List<Book> books=new ArrayList<>();
 
+
     public void regist(User user) {
         if(!userDb.contains(user)){
             userDb.add(user);
@@ -51,8 +52,44 @@ public class LibDaoImpl{
     }
 
     public List<Book> getBooksByCondition(String bookID, String bookName, String categoryName) {
+        books.clear();
+        books.add(new Book("1","管理者","经管","100","很好看"));
+        books.add(new Book("2","高效","职场","100","很好看"));
+        List<Book> bookList = books;
+        if(bookID!=null){
+            if (!bookID.isEmpty()) {
+                for (int i = 0; i <bookList.size() ; i++) {
+                    Book book=bookList.get(i);
+                    if(!book.getId().equals(bookID)){
+                        bookList.remove(book);
+                    }
+                }
+            }
+        }
+        if(bookName!=null){
+            if (!bookName.isEmpty()) {
+                for (int i = 0; i <bookList.size() ; i++) {
+                    Book book=bookList.get(i);
+                    if(!book.getName().equals(bookName)){
+                        bookList.remove(book);
+                    }
+                }
+            }
+        }
+if(categoryName!=null){
+    if (!categoryName.isEmpty()) {
+        for (int i = 0; i <bookList.size() ; i++) {
+            Book book=bookList.get(i);
+            if(!book.getCategory().equals(categoryName)){
+                bookList.remove(book);
+            }
+        }
 
-        return null;
+    }
+}
+
+
+        return bookList;
     }
 
     public static List<User> getUserDb() {

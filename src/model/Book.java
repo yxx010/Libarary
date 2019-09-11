@@ -23,9 +23,10 @@ public class Book {
     public Book(){
 
     }
-    public Book(String id, String name, String catgory,String price, String des) {
+    public Book(String id, String name, String category,String price, String des) {
         this.id = id;
         this.name = name;
+        this.category=category;
         this.price = price;
         this.des = des;
     }
@@ -69,4 +70,5 @@ public class Book {
     public void setCategory(String category) {
         this.category = category;
     }
+
 }

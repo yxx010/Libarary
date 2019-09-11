@@ -5,15 +5,71 @@
 <base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>图书查询</title>
-<script type="text/javascript" src="<%=basePath%>/resources/js/jquery-1.4.2.js"></script>
+<script type="text/javascript" src="js/jquery-3.4.1.js"></script>
+	<script>
+		$(function () {
+			$.ajax({
+				"url":"/SelectBookServlet",
+				//"data":{"":"1"},
+				"type":"post",
+				"dataType":"json",
+				"success":function(json){
+					console.log(json);
+					for (var i=0;i<json.length;i++){
+						var book=json[i];
+						//$("#lv1").append("<option value='"+ch.code+"'>"+ch.name)
+						$("#cont").append("<tr><td>"+book.id+"</td>" +
+								"<td>" + book.name+"</td>"+
+								"<td>" + book.category+"</td>"+
+								"<td>"+book.price+
+								"<td>"+book.des+
+								"</td>" +
+								"</tr>");
+
+					}
+				}
+			})
+		})
+		$(function(){
+			$("#search").on("click",function () {
+				alert("查询");
+				var bookID=document.getElementById("bookID").value;
+				alert(bookID);
+				var bookName=document.getElementById("bookName").value;
+				var categoryName=document.getElementById("categoryName").value;
+
+				console.log(parent);
+				$.ajax({
+					"url":"/SelectBookServlet",
+					"data":{"bookID":bookID,"bookName":bookName,"categoryName":categoryName},
+					"dataType":"json",
+					"type":"post",
+					"success":function(json){
+						console.log(json);
+						$("#cont").remove();
+						for(var i=0;i<json.length;i++){
+							var book=json[i];
+							$("#cont").append("<tr><td>"+book.id+"</td>" +
+									"<td>" + book.name+"</td>"+
+									"<td>" + book.category+"</td>"+
+									"<td>"+book.price+
+									"<td>"+book.des+
+									"</td>" +
+									"</tr>");
+						}
+					}
+				})
+			})
+		})
+	</script>
 </head>
 <body>
 	<center>
 		<h1>图书查询</h1>
 		<p>
-			图书ID：<input type="text" name="bookID">
-			图书名：<input type="text" name="bookName">
-			分类：<input type="text" name="categoryName">
+			图书ID：<input type="text" name="bookID" id="bookID">
+			图书名：<input type="text" name="bookName" id="bookName">
+			分类：<input type="text" name="categoryName" id="categoryName">
 			<input type="submit" value="查询" id="search">
 		</p>
 		<hr>
