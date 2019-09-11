@@ -52,9 +52,9 @@ public class LibDaoImpl{
     }
 
     public List<Book> getBooksByCondition(String bookID, String bookName, String categoryName) {
-        books.clear();
-        books.add(new Book("1","管理者","经管","100","很好看"));
-        books.add(new Book("2","高效","职场","100","很好看"));
+        //books.clear();
+        //books.add(new Book("1","管理者","经管","100","很好看"));
+        //books.add(new Book("2","高效","职场","100","很好看"));
         List<Book> bookList = books;
         if(bookID!=null){
             if (!bookID.isEmpty()) {

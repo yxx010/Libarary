@@ -20,7 +20,7 @@ public class LoginServlet extends HttpServlet {
             //System.out.println("登录成功！");
             //response.getWriter().println(username);
             //request.getRequestDispatcher("/server.html").forward(request,response);
-            request.getSession().setAttribute("username",username);
+            request.getSession().setAttribute("loginUser",username);
             //重定向
             response.setContentType("text/html;charset=utf-8");
             response.sendRedirect(request.getContextPath()+"/server.html");

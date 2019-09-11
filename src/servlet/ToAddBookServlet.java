@@ -15,11 +15,11 @@ public class ToAddBookServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         LibServiceImpl libService=new LibServiceImpl();
         String id=request.getParameter("id");
-        String name=request.getParameter("name");
-        String category=request.getParameter("category");
+        String bookName=request.getParameter("bookName");
+        String categoryName=request.getParameter("categoryName");
         String price=request.getParameter("price");
-        String des=request.getParameter("des");
-        Book book=new Book(id,name,category,price,des);
+        String description=request.getParameter("description");
+        Book book=new Book(id,bookName,categoryName,price,description);
         libService.addBook(book);
         response.setContentType("text/html;charset=utf-8");
         response.getWriter().println("添加成功");
