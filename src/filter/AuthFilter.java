@@ -16,7 +16,7 @@ public class AuthFilter implements Filter {
         HttpServletResponse httpServletResponse=(HttpServletResponse)resp;
         String loginUser=(String)httpServletRequest.getSession().getAttribute("loginUser");
         if(loginUser==null){
-            httpServletResponse.sendRedirect(httpServletRequest.getContextPath()+"FilterDemo.jsp?flag=1");
+            httpServletResponse.sendRedirect(httpServletRequest.getContextPath()+"index.jsp?needLogin=1");
             return;
         }else {
             chain.doFilter(httpServletRequest, httpServletResponse);

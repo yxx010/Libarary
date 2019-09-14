@@ -22,7 +22,6 @@ public class SelectBookServlet extends HttpServlet {
         String categoryName=request.getParameter("categoryName");
         List<Book> list=libService.getBooksByCondition(bookID,bookName,categoryName);
         String json= JSON.toJSONString(list);
-        response.setContentType("text/html;charset=utf-8");
         response.getWriter().println(json);
     }
 

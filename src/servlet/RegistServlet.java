@@ -1,6 +1,5 @@
 package servlet;
 
-import dao.LibDaoImpl;
 import model.User;
 import service.LibServiceImpl;
 
@@ -20,9 +19,12 @@ public class RegistServlet extends HttpServlet {
         String phone=request.getParameter("phone");
         String email=request.getParameter("email");
         User user=new User(username,password,phone,email);
-        System.out.println(user);
-        libService.regist(user);
-        request.getRequestDispatcher("/index.html").forward(request,response);
+        if(!libService.userIsExist(username)){
+            libService.regist(user);
+            request.getRequestDispatcher("/index.jsp").forward(request,response);
+        }else{
+            response.getWriter().println("用户已存在");
+        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -1,6 +1,6 @@
 package servlet;
 
-import dao.LibDaoImpl;
+
 import service.LibServiceImpl;
 
 import javax.servlet.ServletException;
@@ -16,18 +16,15 @@ public class LoginServlet extends HttpServlet {
         String username=request.getParameter("username");
         String password=request.getParameter("password");
         LibServiceImpl libService=new LibServiceImpl();
-        if(libService.isLogin(username,password)){
-            //System.out.println("登录成功！");
-            //response.getWriter().println(username);
-            //request.getRequestDispatcher("/server.html").forward(request,response);
-            request.getSession().setAttribute("loginUser",username);
-            //重定向
-            response.setContentType("text/html;charset=utf-8");
-            response.sendRedirect(request.getContextPath()+"/server.html");
-        }else {
-            response.setContentType("text/html;charset=utf-8");
-            System.out.println("登录失败");
-            response.getWriter().println("登录失败");
+        if(libService.userIsExist(username)){
+            if(libService.isLogin(username,password)){
+                request.getSession().setAttribute("loginUser",username);
+                response.sendRedirect(request.getContextPath()+"/server.html");
+            }else {
+                response.getWriter().println("账号信息错误");
+            }
+        }else{
+            response.getWriter().println("该用户不存在!");
         }
     }
 

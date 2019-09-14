@@ -22,6 +22,9 @@ public class EncodeFilter implements Filter {
 
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
         req.setCharacterEncoding(config.getInitParameter("charset"));
+        //resp.setCharacterEncoding(config.getInitParameter("charset"));// 设置response字符编码
+        resp.setContentType("text/html;charset=utf-8");
+
         chain.doFilter(req, resp);
     }
 
