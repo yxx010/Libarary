@@ -19,6 +19,7 @@ public class SelectBookServlet extends HttpServlet {
         String bookID=request.getParameter("bookID");
         System.out.println("ID是"+bookID);
         String bookName=request.getParameter("bookName");
+        System.out.println("name是"+bookName);
         String categoryName=request.getParameter("categoryName");
         List<Book> list=libService.getBooksByCondition(bookID,bookName,categoryName);
         String json= JSON.toJSONString(list);

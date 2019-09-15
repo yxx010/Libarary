@@ -11,7 +11,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>图书添加</title>
     <script type="application/javascript" src="js/jquery-3.4.1.js"></script>
-    <script>
+    <script type="application/javascript">
         $(function () {
             $.ajax({
                 "url":"/SelectCategoryServlet",
@@ -47,35 +47,6 @@
                 <td>图书分类</td>
                 <td>
                     <select name="categoryName" id="categoryName">
-                        <!--script>
-                            var oButton=document.getElementById("categoryName");
-                                oButton.onclick=function () {
-                                    //1.创建
-                                    var xmlhttp;
-                                    if(window.XMLHttpRequest){
-                                        xmlhttp=new XMLHttpRequest();
-                                    }else{
-                                        xmlhttp=new ActiveXObject("Microsoft.XMlHTTP");
-                                    }
-                                    //2.发送ajax，true代表异步执行，false同步处理
-                                    xmlhttp.open("post","/SelectCategoryServlet",true);
-                                    xmlhttp.send();
-                                    //3.处理服务的响应
-
-                                    xmlhttp.onreadystatechange=function(){
-                                        var html="";
-                                        if(xmlhttp.readyState==4&&xmlhttp.status==200){
-                                            var text=xmlhttp.responseText;
-                                            var json=JSON.parse(text);
-                                            for (var i=0;i<json.length;i++){
-                                                var categoryName=json[i].categoryName;
-                                                html=html+"<option value='"+categoryName+"'>"+categoryName+"</option>";
-                                            }
-                                            document.getElementById("categoryName").innerHTML=html;
-                                        }
-                                    }
-                            }
-                        </script-->
                     </select>
                 </td>
             </tr>
@@ -95,6 +66,40 @@
             </tr>
         </table>
     </form>
+    <script>
+        $("input[type=submit]").on("click",function(){
+            var id=$("input[name=id]").val();
+            var bookName=$("input[name=bookName]").val();
+            var categoryName=$("select[name=categoryName]").val();
+            var price=$("input[name=price]").val();
+            var description=$("input[name=description]").val();
+            var priceCheck=/((^[1-9]\d*)|^0)(\.\d{0,2}){0,1}$/;
+            if(id==null||id==""){
+                alert("图书ID不能为空");
+                return false;
+            }
+            if(bookName==null||bookName==""){
+                alert("图书名不能为空");
+                return false;
+            }
+            if(categoryName==null||categoryName==""){
+                alert("图书分类不能为空");
+                return false;
+            }
+            if(price==null||price==""){
+                alert("图书价格不能为空");
+                return false;
+            }else if(priceCheck.test(price)==false){
+                alert("图书价格不正确");
+                return false;
+            }
+            if(description==null||description==""){
+                alert("描述不能为空");
+                return false;
+            }
+        })
+    </script>
+
 </center>
 </body>
 </html>

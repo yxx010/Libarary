@@ -1,98 +1,96 @@
-
 <!DOCTYPE html>
 <html>
 <head>
-<base href="<%=basePath%>">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>图书查询</title>
-<script type="text/javascript" src="js/jquery-3.4.1.js"></script>
-	<script>
-		$(function () {
-			$.ajax({
-				"url":"/SelectBookServlet",
-				//"data":{"":"1"},
-				"type":"post",
-				"dataType":"json",
-				"success":function(json){
-					console.log(json);
-					for (var i=0;i<json.length;i++){
-						var book=json[i];
-						$("#cont").append("<tr><td>"+book.id+"</td>" +
-								"<td>" + book.name+"</td>"+
-								"<td>" + book.category+"</td>"+
-								"<td>"+book.price+
-								"<td>"+book.des+
-								"</td>" +
-								"</tr>");
+    <base href="<%=basePath%>">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>图书查询</title>
+    <script type="text/javascript" src="js/jquery-3.4.1.js"></script>
+    <script type="application/javascript">
+        $(function () {
+            $.ajax({
+                "url": "/SelectBookServlet",
+                //"data":{"":"1"},
+                "type": "post",
+                "dataType": "json",
+                "success": function (json) {
+                    console.log(json);
+                    $("#cont>tr").remove();
+                    for (var i = 0; i < json.length; i++) {
+                        var book = json[i];
+                        $("#cont").append("<tr><td>" + book.id + "</td>" +
+                            "<td>" + book.name + "</td>" +
+                            "<td>" + book.category + "</td>" +
+                            "<td>" + book.price +
+                            "<td>" + book.des +
+                            "</td>" +
+                            "</tr>");
 
-					}
-				}
-			})
-		})
-		$(function(){
-			$("#search").on("click",function () {
-				//alert("查询");
-				var bookID=document.getElementById("bookID").value;
-				//alert(bookID);
-				var bookName=document.getElementById("bookName").value;
-				var categoryName=document.getElementById("categoryName").value;
-				$.ajax({
-					"url":"/SelectBookServlet",
-					"data":{"bookID":bookID,"bookName":bookName,"categoryName":categoryName},
-					"dataType":"json",
-					"type":"post",
-					"success":function(json){
-						console.log(json);
-						$("#cont>tr").remove();
-						for(var i=0;i<json.length;i++){
-							var book=json[i];
-							$("#cont").append("<tr><td>"+book.id+"</td>" +
-									"<td>" + book.name+"</td>"+
-									"<td>" + book.category+"</td>"+
-									"<td>"+book.price+
-									"<td>"+book.des+
-									"</td>" +
-									"</tr>");
-						}
-					}
-				})
-			})
-		})
-	</script>
+                    }
+                }
+            })
+        })
+        $(function () {
+            $("#search").on("click", function () {
+                var bookID = document.getElementById("bookID").value;
+                var bookName = document.getElementById("bookName").value;
+                var categoryName = document.getElementById("categoryName").value;
+                $.ajax({
+                    "url": "/SelectBookServlet",
+                    "data": {"bookID": bookID, "bookName": bookName, "categoryName": categoryName},
+                    "dataType": "json",
+                    "type": "post",
+                    "success": function (json) {
+                        console.log(json);
+                        $("#cont>tr").remove();
+                        for (var i = 0; i < json.length; i++) {
+                            var book = json[i];
+                            $("#cont").append("<tr><td>" + book.id + "</td>" +
+                                "<td>" + book.name + "</td>" +
+                                "<td>" + book.category + "</td>" +
+                                "<td>" + book.price +
+                                "<td>" + book.des +
+                                "</td>" +
+                                "</tr>");
+                        }
+                    }
+                })
+            })
+        })
+    </script>
 </head>
 <body>
-	<center>
-		<h1>图书查询</h1>
-		<p>
-			图书ID：<input type="text" name="bookID" id="bookID">
-			图书名：<input type="text" name="bookName" id="bookName">
-			分类：<input type="text" name="categoryName" id="categoryName">
-			<input type="submit" value="查询" id="search">
-		</p>
-		<hr>
-		<table width="800px" cellspacing="0px" cellpadding="0px" border="1px">
-			<thead>
-				<tr>
-					<th>图书ID</th>
-					<th>书名</th>
-					<th>分类</th>
-					<th>价格</th>
-					<th>描述</th>
-				</tr>
-			</thead>
-			<tbody id="cont">
-				
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-				
-			</tbody>
-		</table>
-	</center>
-	
+<center>
+    <h1>图书查询</h1>
+    <p>
+        图书ID：<input type="text" name="bookID" id="bookID">
+        图书名：<input type="text" name="bookName" id="bookName">
+        分类：<input type="text" name="categoryName" id="categoryName">
+        <input type="submit" value="查询" id="search">
+    </p>
+    <hr>
+    <table width="800px" cellspacing="0px" cellpadding="0px" border="1px">
+        <thead>
+        <tr>
+            <th>图书ID</th>
+            <th>书名</th>
+            <th>分类</th>
+            <th>价格</th>
+            <th>描述</th>
+        </tr>
+        </thead>
+        <tbody id="cont">
+
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+
+        </tbody>
+    </table>
+</center>
+
 </body>
 </html>

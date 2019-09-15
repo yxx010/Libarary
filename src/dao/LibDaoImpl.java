@@ -66,13 +66,17 @@ public class LibDaoImpl {
         //books.clear();
         //books.add(new Book("1","管理者","经管","100","很好看"));
         //books.add(new Book("2","高效","职场","100","很好看"));
-        List<Book> bookList = books;
+        List<Book> bookList = new ArrayList<>();
+        for (int i=0;i<books.size();i++){
+            bookList.add(books.get(i));
+        }
         if (bookID != null) {
             if (!bookID.isEmpty()) {
                 for (int i = 0; i < bookList.size(); i++) {
                     Book book = bookList.get(i);
                     if (!book.getId().equals(bookID)) {
                         bookList.remove(book);
+                        i--;
                     }
                 }
             }
@@ -83,6 +87,7 @@ public class LibDaoImpl {
                     Book book = bookList.get(i);
                     if (!book.getName().equals(bookName)) {
                         bookList.remove(book);
+                        i--;
                     }
                 }
             }
@@ -93,6 +98,7 @@ public class LibDaoImpl {
                     Book book = bookList.get(i);
                     if (!book.getCategory().equals(categoryName)) {
                         bookList.remove(book);
+                        i--;
                     }
                 }
 
