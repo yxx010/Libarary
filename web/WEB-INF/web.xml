@@ -25,4 +25,16 @@
         <filter-name>AuthFilter</filter-name>
         <url-pattern>/server.html</url-pattern>
     </filter-mapping>
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/category.jsp</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/addBook.jsp</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/showBook.jsp</url-pattern>
+    </filter-mapping>
 </web-app>
